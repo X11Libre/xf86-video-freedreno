@@ -208,7 +208,7 @@ MSMPreInit(ScrnInfoPtr pScrn, int flags)
 
 	/* Allocate room for our private data */
 	if (pScrn->driverPrivate == NULL)
-		pScrn->driverPrivate = xnfcalloc(sizeof(MSMRec), 1);
+		pScrn->driverPrivate = XNFcallocarray(sizeof(MSMRec), 1);
 
 	pMsm = MSMPTR(pScrn);
 
