@@ -605,7 +605,7 @@ drmmode_crtc_init(ScrnInfoPtr pScrn, drmmode_ptr drmmode, int num)
 	if (crtc == NULL)
 		return;
 
-	drmmode_crtc = xnfcalloc(sizeof(drmmode_crtc_private_rec), 1);
+	drmmode_crtc = XNFcallocarray(sizeof(drmmode_crtc_private_rec), 1);
 	drmmode_crtc->mode_crtc = drmModeGetCrtc(drmmode->fd,
 			drmmode->mode_res->crtcs[num]);
 	drmmode_crtc->drmmode = drmmode;
@@ -699,7 +699,7 @@ drmmode_output_get_modes(xf86OutputPtr output)
 
 	/* modes should already be available */
 	for (i = 0; i < koutput->count_modes; i++) {
-		Mode = xnfalloc(sizeof(DisplayModeRec));
+		Mode = XNFalloc(sizeof(DisplayModeRec));
 
 		drmmode_ConvertFromKMode(output->scrn, &koutput->modes[i],
 				Mode);
@@ -1187,7 +1187,7 @@ Bool drmmode_pre_init(ScrnInfoPtr pScrn, int fd, int cpp)
 	drmmode_ptr drmmode;
 	int i;
 
-	drmmode = xnfalloc(sizeof *drmmode);
+	drmmode = XNFalloc(sizeof *drmmode);
 	drmmode->fd = fd;
 	drmmode->fb_id = 0;
 
