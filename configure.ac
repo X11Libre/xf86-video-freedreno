@@ -92,7 +92,7 @@ AC_SUBST(configdir)
 # Older xserver is unhappy to encounter the new OutputClass
 # sections, so avoid installing them if built for older
 # server:
-PKG_CHECK_EXISTS([xorg-server >= 1.15.99.904], [], [sysconfigdir=""])
+PKG_CHECK_EXISTS([xorg-server >= 1.18], [], [sysconfigdir=""])
 
 AM_CONDITIONAL(HAS_XORG_CONF_DIR, [test "x$sysconfigdir" != "x"])
 
