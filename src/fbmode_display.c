@@ -364,9 +364,7 @@ static const xf86CrtcFuncsRec MSMCrtcFuncs = {
 		.set_cursor_position = MSMCrtcSetCursorPosition,
 		.show_cursor = MSMCrtcShowCursor,
 		.hide_cursor = MSMCrtcHideCursor,
-#if XORG_VERSION_CURRENT >= XORG_VERSION_NUMERIC(1,15,99,902,0)
 		.load_cursor_argb_check = MSMCrtcLoadCursorARGBCheck,
-#endif
 		.load_cursor_argb = MSMCrtcLoadCursorARGB,
 		.gamma_set = MSMCrtcGammaSet,
 		.destroy = NULL, /* XXX */
@@ -573,9 +571,6 @@ MSMCrtcResize(ScrnInfoPtr pScrn, int width, int height)
 				pScrn->depth, pScrn->bitsPerPixel,
 				pScrn->displayWidth * (pScrn->bitsPerPixel / 8),
 				NULL);
-#if GET_ABI_MAJOR(ABI_VIDEODRV_VERSION) < 9
-		pScrn->pixmapPrivate.ptr = ppix->devPrivate.ptr;
-#endif
 	}
 
 	return TRUE;

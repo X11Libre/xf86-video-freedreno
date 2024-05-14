@@ -31,59 +31,10 @@
 #include <xorg-server.h>
 #include <xorgVersion.h>
 #include <xf86Module.h>
-
 #include <picturestr.h>
-#ifndef GLYPH_HAS_GLYPH_PICTURE_ACCESSOR
-#define GetGlyphPicture(g, s) GlyphPicture((g))[(s)->myNum]
-#define SetGlyphPicture(g, s, p) GlyphPicture((g))[(s)->myNum] = p
-#endif
 
-#ifndef XF86_HAS_SCRN_CONV
-#define xf86ScreenToScrn(s) xf86Screens[(s)->myNum]
-#if XORG_VERSION_CURRENT < XORG_VERSION_NUMERIC(1,1,0,0,0)
-#define xf86ScrnToScreen(s) screenInfo.screens[(s)->scrnIndex]
-#else
 #define xf86ScrnToScreen(s) ((s)->pScreen)
-#endif
-#else
-#define xf86ScrnToScreen(s) ((s)->pScreen)
-#endif
 
-#ifndef XF86_SCRN_INTERFACE
-
-#define SCRN_ARG_TYPE int
-#define SCRN_INFO_PTR(arg1) ScrnInfoPtr pScrn = xf86Screens[(arg1)]
-
-#define SCREEN_ARG_TYPE int
-#define SCREEN_PTR(arg1) ScreenPtr pScreen = screenInfo.screens[(arg1)]
-
-#define SCREEN_INIT_ARGS_DECL int index, ScreenPtr pScreen, int argc, char **argv
-
-#define BLOCKHANDLER_ARGS_DECL int arg, pointer blockData, pointer pTimeout, pointer pReadmask
-#define BLOCKHANDLER_ARGS arg, blockData, pTimeout, pReadmask
-
-#define WAKEUPHANDLER_ARGS_DECL int arg, pointer wakeupData, unsigned long result, pointer read_mask
-#define WAKEUPHANDLER_ARGS arg, wakeupData, result, read_mask
-
-#define CLOSE_SCREEN_ARGS_DECL int scrnIndex, ScreenPtr pScreen
-#define CLOSE_SCREEN_ARGS scrnIndex, pScreen
-
-#define ADJUST_FRAME_ARGS_DECL int arg, int x, int y, int flags
-#define ADJUST_FRAME_ARGS(arg, x, y) (arg)->scrnIndex, x, y, 0
-
-#define SWITCH_MODE_ARGS_DECL int arg, DisplayModePtr mode, int flags
-#define SWITCH_MODE_ARGS(arg, m) (arg)->scrnIndex, m, 0
-
-#define FREE_SCREEN_ARGS_DECL int arg, int flags
-#define FREE_SCREEN_ARGS(x) (x)->scrnIndex, 0
-
-#define VT_FUNC_ARGS_DECL int arg, int flags
-#define VT_FUNC_ARGS(flags) pScrn->scrnIndex, (flags)
-
-#define ENABLE_DISABLE_FB_ACCESS_ARGS(pScrn, b) pScrn->scrnIndex, b
-
-#define XF86_ENABLEDISABLEFB_ARG(x) ((x)->scrnIndex)
-#else
 #define SCRN_ARG_TYPE ScrnInfoPtr
 #define SCRN_INFO_PTR(arg1) ScrnInfoPtr pScrn = (arg1)
 
@@ -120,9 +71,5 @@
 #define VT_FUNC_ARGS(flags) pScrn
 
 #define ENABLE_DISABLE_FB_ACCESS_ARGS(pScrn, b) pScrn, b
-
-#define XF86_ENABLEDISABLEFB_ARG(x) (x)
-
-#endif
 
 #endif

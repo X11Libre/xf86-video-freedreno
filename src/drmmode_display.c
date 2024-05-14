@@ -583,9 +583,7 @@ static const xf86CrtcFuncsRec drmmode_crtc_funcs = {
 		.set_cursor_position = drmmode_set_cursor_position,
 		.show_cursor = drmmode_show_cursor,
 		.hide_cursor = drmmode_hide_cursor,
-#if XORG_VERSION_CURRENT >= XORG_VERSION_NUMERIC(1,15,99,902,0)
 		.load_cursor_argb_check = drmmode_load_cursor_argb_check,
-#endif
 		.load_cursor_argb = drmmode_load_cursor_argb,
 		.shadow_create = drmmode_crtc_shadow_create,
 		.shadow_allocate = drmmode_crtc_shadow_allocate,
@@ -1145,9 +1143,6 @@ drmmode_xf86crtc_resize(ScrnInfoPtr pScrn, int width, int height)
 	if (ppix) {
 		screen->ModifyPixmapHeader(ppix, width, height, -1, -1, pitch, ptr);
 		msm_set_pixmap_bo(ppix, pMsm->scanout);
-#if GET_ABI_MAJOR(ABI_VIDEODRV_VERSION) < 9
-		pScrn->pixmapPrivate.ptr = ppix->devPrivate.ptr;
-#endif
 	}
 
 	for (i = 0; i < xf86_config->num_crtc; i++) {
