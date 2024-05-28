@@ -180,8 +180,10 @@ MSMCrtcModeSet(xf86CrtcPtr crtc, DisplayModePtr mode,
 		xf86DrvMsg(pScrn->scrnIndex, X_ERROR, "Unable to change the mode: %m\n");
 	else {
 		/* Refresh the changed settings from the driver */
+#ifndef HAVE_XORG_SERVER_1_20
 		if (crtc->scrn->pScreen)
 			xf86_reload_cursors(crtc->scrn->pScreen);
+#endif
 		ioctl(fbmode->fd, FBIOGET_VSCREENINFO, &fbmode->mode_info);
 	}
 }
