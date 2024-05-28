@@ -178,8 +178,10 @@ MSMCrtcModeSet(xf86CrtcPtr crtc, DisplayModePtr mode,
 		xf86DrvMsg(pScrn->scrnIndex, X_ERROR, "Unable to change the mode: %m\n");
 	else {
 		/* Refresh the changed settings from the driver */
+#ifndef HAVE_XORG_SERVER_1_20
 		if (crtc->scrn->pScreen)
 			xf86_reload_cursors(crtc->scrn->pScreen);
+#endif
 		ioctl(fbmode->fd, FBIOGET_VSCREENINFO, &fbmode->mode_info);
 	}
 }
@@ -364,9 +366,7 @@ static const xf86CrtcFuncsRec MSMCrtcFuncs = {
 		.set_cursor_position = MSMCrtcSetCursorPosition,
 		.show_cursor = MSMCrtcShowCursor,
 		.hide_cursor = MSMCrtcHideCursor,
-#if XORG_VERSION_CURRENT >= XORG_VERSION_NUMERIC(1,15,99,902,0)
 		.load_cursor_argb_check = MSMCrtcLoadCursorARGBCheck,
-#endif
 		.load_cursor_argb = MSMCrtcLoadCursorARGB,
 		.gamma_set = MSMCrtcGammaSet,
 		.destroy = NULL, /* XXX */
@@ -573,9 +573,6 @@ MSMCrtcResize(ScrnInfoPtr pScrn, int width, int height)
 				pScrn->depth, pScrn->bitsPerPixel,
 				pScrn->displayWidth * (pScrn->bitsPerPixel / 8),
 				NULL);
-#if GET_ABI_MAJOR(ABI_VIDEODRV_VERSION) < 9
-		pScrn->pixmapPrivate.ptr = ppix->devPrivate.ptr;
-#endif
 	}
 
 	return TRUE;
