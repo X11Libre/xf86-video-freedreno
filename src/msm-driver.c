@@ -85,15 +85,14 @@ static const OptionInfoRec MSMOptions[] = {
 };
 
 
-static Bool MSMEnterVT(VT_FUNC_ARGS_DECL);
-static void MSMLeaveVT(VT_FUNC_ARGS_DECL);
+static Bool MSMEnterVT(ScrnInfoPtr pScrn);
+static void MSMLeaveVT(ScrnInfoPtr pScrn);
 
 Bool msmDebug = TRUE;
 
 static void
 MSMBlockHandler (BLOCKHANDLER_ARGS_DECL)
 {
-	SCREEN_PTR(arg);
 	ScrnInfoPtr pScrn = xf86ScreenToScrn(pScreen);
 	MSMPtr pMsm = MSMPTR(pScrn);
 
@@ -332,7 +331,7 @@ MSMCreateScreenResources(ScreenPtr pScreen)
 		return FALSE;
 	pScreen->CreateScreenResources = MSMCreateScreenResources;
 
-	if (!MSMEnterVT(VT_FUNC_ARGS(0)))
+	if (!MSMEnterVT(NULL))
 		return FALSE;
 
 	ppix = pScreen->GetScreenPixmap(pScreen);
@@ -349,7 +348,7 @@ MSMCreateScreenResources(ScreenPtr pScreen)
 }
 
 static Bool
-MSMCloseScreen(CLOSE_SCREEN_ARGS_DECL)
+MSMCloseScreen(ScreenPtr pScreen)
 {
 	ScrnInfoPtr pScrn = xf86ScreenToScrn(pScreen);
 	MSMPtr pMsm = MSMPTR(pScrn);
@@ -359,7 +358,7 @@ MSMCloseScreen(CLOSE_SCREEN_ARGS_DECL)
 	MSMAccelFini(pScreen);
 
 	if (pScrn->vtSema) {
-		MSMLeaveVT(VT_FUNC_ARGS(0));
+		MSMLeaveVT(NULL);
 		pScrn->vtSema = FALSE;
 	}
 
@@ -372,11 +371,11 @@ MSMCloseScreen(CLOSE_SCREEN_ARGS_DECL)
 	pScreen->BlockHandler = pMsm->BlockHandler;
 	pScreen->CloseScreen = pMsm->CloseScreen;
 
-	return (*pScreen->CloseScreen)(CLOSE_SCREEN_ARGS);
+	return (*pScreen->CloseScreen)(pScreen);
 }
 
 static Bool
-MSMScreenInit(SCREEN_INIT_ARGS_DECL)
+MSMScreenInit(ScreenPtr pScreen, int argc, char **argv)
 {
 	ScrnInfoPtr pScrn = xf86ScreenToScrn(pScreen);
 	MSMPtr pMsm = MSMPTR(pScrn);
@@ -505,7 +504,7 @@ MSMScreenInit(SCREEN_INIT_ARGS_DECL)
 }
 
 static Bool
-MSMSwitchMode(SWITCH_MODE_ARGS_DECL)
+MSMSwitchMode(ScrnInfoPtr pScrn, DisplayModePtr mode)
 {
 	/* FIXME:  We should only have the one mode, so we shouldn't ever call
 	 * this function - regardless, it needs to be stubbed - so what
@@ -515,9 +514,8 @@ MSMSwitchMode(SWITCH_MODE_ARGS_DECL)
 }
 
 static Bool
-MSMEnterVT(VT_FUNC_ARGS_DECL)
+MSMEnterVT(ScrnInfoPtr pScrn)
 {
-	SCRN_INFO_PTR(arg);
 	MSMPtr pMsm = MSMPTR(pScrn);
 
 	DEBUG_MSG("enter-vt");
@@ -547,9 +545,8 @@ MSMEnterVT(VT_FUNC_ARGS_DECL)
 }
 
 static void
-MSMLeaveVT(VT_FUNC_ARGS_DECL)
+MSMLeaveVT(ScrnInfoPtr pScrn)
 {
-	SCRN_INFO_PTR(arg);
 	MSMPtr pMsm = MSMPTR(pScrn);
 
 	DEBUG_MSG("leave-vt");
@@ -569,9 +566,8 @@ MSMLeaveVT(VT_FUNC_ARGS_DECL)
 }
 
 static void
-MSMFreeScreen(FREE_SCREEN_ARGS_DECL)
+MSMFreeScreen(ScrnInfoPtr pScrn)
 {
-	SCRN_INFO_PTR(arg);
 	MSMPtr pMsm = MSMPTR(pScrn);
 	free_msm(pMsm);
 }
