@@ -40,6 +40,8 @@
 #endif
 
 #include <sys/ioctl.h>
+#include <sys/mman.h>
+
 #include "xf86.h"
 #include "xf86Crtc.h"
 #include "xf86_OSlib.h"
