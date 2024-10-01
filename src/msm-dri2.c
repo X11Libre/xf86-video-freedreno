@@ -266,7 +266,7 @@ MSMDRI2DestroyBuffer(DrawablePtr pDraw, DRI2BufferPtr buffer)
 		}
 	}
 
-	pScreen->DestroyPixmap(buf->pPixmap);
+	dixDestroyPixmap(buf->pPixmap, 0);
 
 	free(buf);
 }
