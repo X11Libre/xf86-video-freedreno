@@ -283,7 +283,7 @@ drmmode_fbcon_copy(ScreenPtr pScreen)
 	if (!scanout_pix) {
 		xf86DrvMsg(pScrn->scrnIndex, X_WARNING,
 				"Failed to init scanout pixmap for fbcon mirror\n");
-		pScreen->DestroyPixmap(fbcon_pix);
+		dixDestroyPixmap(fbcon_pix, 0);
 		goto fallback;
 	}
 
@@ -307,8 +307,8 @@ drmmode_fbcon_copy(ScreenPtr pScreen)
 	exa->PrepareAccess(scanout_pix, EXA_PREPARE_SRC);
 	exa->FinishAccess(scanout_pix, EXA_PREPARE_SRC);
 
-	pScreen->DestroyPixmap(scanout_pix);
-	pScreen->DestroyPixmap(fbcon_pix);
+	dixDestroyPixmap(scanout_pix, 0);
+	dixDestroyPixmap(fbcon_pix, 0);
 	pScreen->canDoBGNoneRoot = TRUE;
 
 	return;
