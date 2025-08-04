@@ -248,8 +248,7 @@ static const enum xa_surface_type stype_map[] = {
 /*
  * Create an xa format from a PICT format.
  */
-enum xa_formats
-to_xa_format(enum _PictFormatShort format)
+enum xa_formats to_xa_format(PictFormatShort format)
 {
 	uint32_t ptype = PICT_FORMAT_TYPE(format);
 
