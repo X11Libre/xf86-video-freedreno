@@ -47,8 +47,6 @@
 #include "xf86cmap.h"
 #include "shadowfb.h"
 
-#include "region.h"
-
 #include <X11/extensions/randr.h>
 
 #ifdef HAVE_XEXTPROTO_71
