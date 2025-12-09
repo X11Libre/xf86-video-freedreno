@@ -55,11 +55,6 @@ AC_ARG_WITH(xorg-module-dir,
             [moduledir="$withval"],
             [moduledir=`$PKG_CONFIG --variable=moduledir xorg-server`])
 
-# Checks for extensions
-XORG_DRIVER_CHECK_EXT(RANDR, randrproto)
-XORG_DRIVER_CHECK_EXT(RENDER, renderproto)
-#XORG_DRIVER_CHECK_EXT(XV, videoproto)
-
 # Checks for pkg-config packages
 PKG_CHECK_MODULES(XORG, [libdrm >= 2.4.54 libdrm_freedreno xorg-server xproto libudev $REQUIRED_MODULES])
 sdkdir=$(pkg-config --variable=sdkdir xorg-server)
