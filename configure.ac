@@ -61,10 +61,7 @@ sdkdir=$(pkg-config --variable=sdkdir xorg-server)
 
 PKG_CHECK_MODULES(XORG_1_20, xorg-server >= 1.20, AC_DEFINE(HAVE_XORG_SERVER_1_20, 1, [Xserver >= 1.20]))
 
-PKG_CHECK_MODULES(XEXT, [xextproto >= 7.0.99.1],
-	HAVE_XEXTPROTO_71="yes"; AC_DEFINE(HAVE_XEXTPROTO_71, 1, [xextproto 7.1 available]),
-	HAVE_XEXTPROTO_71="no")
-AM_CONDITIONAL(HAVE_XEXTPROTO_71, [ test "$HAVE_XEXTPROTO_71" = "yes" ])
+PKG_CHECK_MODULES(XEXT, [xextproto >= 7.1])
 
 PKG_CHECK_MODULES([XATRACKER], [xatracker >= 2.2.0],
 	BUILD_XA=yes; AC_DEFINE(HAVE_XA, 1, [xa state tracker available]),
