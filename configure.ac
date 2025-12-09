@@ -21,10 +21,10 @@
 # Process this file with autoconf to produce a configure script
 
 AC_PREREQ(2.57)
-AC_INIT([xf86-video-freedreno],
+AC_INIT([xlibre-xf86-video-freedreno],
         [1.4.0],
-        [https://bugs.freedesktop.org/enter_bug.cgi],
-        [xf86-video-freedreno])
+        [https://github.com/X11Libre/xf86-video-freedreno/issues],
+        [xlibre-xf86-video-freedreno])
 
 AC_CONFIG_SRCDIR([Makefile.am])
 AM_CONFIG_HEADER([config.h])
