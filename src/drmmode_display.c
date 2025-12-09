@@ -395,11 +395,6 @@ drmmode_set_mode_major(xf86CrtcPtr crtc, DisplayModePtr mode,
 	crtc->funcs->gamma_set(crtc, crtc->gamma_red, crtc->gamma_green,
 			crtc->gamma_blue, crtc->gamma_size);
 
-#ifndef HAVE_XORG_SERVER_1_20
-	if (pMsm->HWCursor)
-		xf86_reload_cursors(crtc->scrn->pScreen);
-#endif
-
 	return TRUE;
 }
 
