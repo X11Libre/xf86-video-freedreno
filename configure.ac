@@ -22,7 +22,7 @@
 
 AC_PREREQ(2.57)
 AC_INIT([xlibre-xf86-video-freedreno],
-        [1.4.0],
+        [1.4.1],
         [https://github.com/X11Libre/xf86-video-freedreno/issues],
         [xlibre-xf86-video-freedreno])
 
