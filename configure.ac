@@ -56,7 +56,7 @@ AC_ARG_WITH(xorg-module-dir,
             [moduledir=`$PKG_CONFIG --variable=moduledir xorg-server`])
 
 # Checks for pkg-config packages
-PKG_CHECK_MODULES(XORG, [libdrm >= 2.4.54 libdrm_freedreno xorg-server >= 1.20 xproto libudev $REQUIRED_MODULES])
+PKG_CHECK_MODULES(XORG, [libdrm >= 2.4.54 libdrm_freedreno xorg-server >= 25.0.0 xproto libudev $REQUIRED_MODULES])
 PKG_CHECK_MODULES(XEXT, [xextproto >= 7.1])
 
 PKG_CHECK_MODULES([XATRACKER], [xatracker >= 2.2.0],
