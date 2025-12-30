@@ -17,7 +17,6 @@ MSM_INCLUDES = \
 
 freedreno_drv_la_SOURCES = \
 	$(MSM_INCLUDES) \
-	compat-api.h \
 	freedreno_z1xx.h \
 	drmmode_display.c \
 	fbmode_display.c \

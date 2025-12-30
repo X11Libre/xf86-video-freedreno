@@ -48,7 +48,6 @@
 
 #include "msm.h"
 #include "msm-accel.h"
-#include "compat-api.h"
 
 #include <drm.h>
 #include "xf86drm.h"
