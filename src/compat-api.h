@@ -35,10 +35,6 @@
 
 #define xf86ScrnToScreen(s) ((s)->pScreen)
 
-#if ABI_VIDEODRV_VERSION >= SET_ABI_VERSION(22,0)
-#define HAVE_NOTIFY_FD	1
-#endif
-
 #if ABI_VIDEODRV_VERSION >= SET_ABI_VERSION(23, 0)
 #define BLOCKHANDLER_ARGS_DECL ScreenPtr pScreen, pointer pTimeout
 #define BLOCKHANDLER_ARGS pScreen, pTimeout
