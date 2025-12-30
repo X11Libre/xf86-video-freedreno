@@ -6,13 +6,14 @@ on:
     pull_request:
 
 jobs:
+    # This driver is Linux-only
     target-ubuntu:
         strategy:
             matrix:
                 xserver-version: [ master, xlibre-xserver-25.1.0, xlibre-xserver-25.0.0.18 ]
         runs-on: ubuntu-latest
         steps:
-            - uses: X11Libre/action-build-driver/target/ubuntu@v0.3.2
+            - uses: X11Libre/action-build-driver/target/ubuntu@v0.3.7
               with:
                 xserver-version: ${{ matrix.xserver-version }}
 
@@ -24,4 +25,4 @@ jobs:
         env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         steps:
-            - uses: X11Libre/action-build-driver/release@v0.0.2
+            - uses: X11Libre/action-build-driver/release@v0.3.7
