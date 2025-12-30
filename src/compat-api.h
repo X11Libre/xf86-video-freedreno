@@ -33,8 +33,6 @@
 #include <xf86Module.h>
 #include <picturestr.h>
 
-#define xf86ScrnToScreen(s) ((s)->pScreen)
-
 #define BLOCKHANDLER_ARGS_DECL ScreenPtr pScreen, pointer pTimeout
 #define BLOCKHANDLER_ARGS pScreen, pTimeout
 

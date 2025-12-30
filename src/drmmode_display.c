@@ -1063,7 +1063,7 @@ static Bool
 drmmode_xf86crtc_resize(ScrnInfoPtr pScrn, int width, int height)
 {
 	xf86CrtcConfigPtr xf86_config = XF86_CRTC_CONFIG_PTR(pScrn);
-	ScreenPtr screen = xf86ScrnToScreen(pScrn);
+	ScreenPtr screen = pScrn->pScreen;
 	MSMPtr pMsm = MSMPTR(pScrn);
 	drmmode_crtc_private_ptr drmmode_crtc = NULL;
 	drmmode_ptr drmmode = NULL;
@@ -1358,7 +1358,7 @@ drmmode_handle_uevents(ScrnInfoPtr scrn)
 	if (!dev)
 		return;
 
-	RRGetInfo(xf86ScrnToScreen(scrn), TRUE);
+	RRGetInfo(scrn->pScreen, TRUE);
 	udev_device_unref(dev);
 }
 #endif
