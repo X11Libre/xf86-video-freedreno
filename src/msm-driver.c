@@ -94,7 +94,7 @@ MSMBlockHandler (ScreenPtr pScreen, pointer pTimeout)
 	MSMPtr pMsm = MSMPTR(pScrn);
 
 	pScreen->BlockHandler = pMsm->BlockHandler;
-	(*pScreen->BlockHandler) (BLOCKHANDLER_ARGS);
+	pScreen->BlockHandler(pScreen, pTimeout);
 	pScreen->BlockHandler = MSMBlockHandler;
 
 	if (pScrn->vtSema)
