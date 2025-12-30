@@ -33,7 +33,6 @@
 #include <xf86Module.h>
 #include <picturestr.h>
 
-#define BLOCKHANDLER_ARGS_DECL ScreenPtr pScreen, pointer pTimeout
 #define BLOCKHANDLER_ARGS pScreen, pTimeout
 
 #endif

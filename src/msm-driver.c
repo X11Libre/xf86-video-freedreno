@@ -88,7 +88,7 @@ static void MSMLeaveVT(ScrnInfoPtr pScrn);
 Bool msmDebug = TRUE;
 
 static void
-MSMBlockHandler (BLOCKHANDLER_ARGS_DECL)
+MSMBlockHandler (ScreenPtr pScreen, pointer pTimeout)
 {
 	ScrnInfoPtr pScrn = xf86ScreenToScrn(pScreen);
 	MSMPtr pMsm = MSMPTR(pScrn);
