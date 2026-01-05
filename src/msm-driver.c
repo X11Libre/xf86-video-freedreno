@@ -87,7 +87,7 @@ static void MSMLeaveVT(ScrnInfoPtr pScrn);
 Bool msmDebug = TRUE;
 
 static void
-MSMBlockHandler (ScreenPtr pScreen, pointer pTimeout)
+MSMBlockHandler (ScreenPtr pScreen, void *pTimeout)
 {
 	ScrnInfoPtr pScrn = xf86ScreenToScrn(pScreen);
 	MSMPtr pMsm = MSMPTR(pScrn);
@@ -824,8 +824,8 @@ static XF86ModuleVersionInfo freedrenoVersRec = {
 
 _X_EXPORT XF86ModuleData freedrenoModuleData = { &freedrenoVersRec, freedrenoSetup, NULL };
 
-pointer
-freedrenoSetup(pointer module, pointer ops, int *errmaj, int *errmin)
+void *
+freedrenoSetup(void *module, void *ops, int *errmaj, int *errmin)
 {
 	static Bool initDone = FALSE;
 
@@ -834,7 +834,7 @@ freedrenoSetup(pointer module, pointer ops, int *errmaj, int *errmin)
 		xf86AddDriver(&freedrenoDriver, module, HaveDriverFuncs);
 
 		/* FIXME: Load symbol references here */
-		return (pointer) 1;
+		return (void*) 1;
 	} else {
 		if (errmaj)
 			*errmaj = LDR_ONCEONLY;
