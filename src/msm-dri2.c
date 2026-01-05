@@ -87,7 +87,7 @@ typedef struct {
 } MSMDRI2DrawableRec, *MSMDRI2DrawablePtr;
 
 static int
-MSMDRI2DrawableGone(pointer p, XID id)
+MSMDRI2DrawableGone(void *p, XID id)
 {
 	MSMDRI2DrawablePtr pPriv = p;
 
