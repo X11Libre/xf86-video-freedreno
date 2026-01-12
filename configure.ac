@@ -83,4 +83,5 @@ AC_SUBST([CCASFLAGS])
 #XORG_MANPAGE_SECTIONS
 XORG_RELEASE_VERSION
 
-AC_OUTPUT([Makefile src/Makefile man/Makefile conf/Makefile])
+AC_CONFIG_FILES([Makefile src/Makefile man/Makefile conf/Makefile])
+AC_OUTPUT
