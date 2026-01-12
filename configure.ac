@@ -73,9 +73,6 @@ AM_CONDITIONAL(LIBUDEV, [ test "x$LIBUDEV" = "xyes" ] )
 configdir=`$PKG_CONFIG --variable=sysconfigdir xorg-server`
 AC_SUBST(configdir)
 
-# Checks for header files.
-AC_HEADER_STDC
-
 AC_SUBST([moduledir])
 AC_SUBST([CFLAGS])
 AC_SUBST([CCASFLAGS])
