@@ -58,6 +58,7 @@
 #define MSM_VERSION_MAJOR PACKAGE_VERSION_MAJOR
 #define MSM_VERSION_MINOR PACKAGE_VERSION_MINOR
 #define MSM_VERSION_PATCH PACKAGE_VERSION_PATCHLEVEL
+#define MSM_VERSION_SUFFIX PACKAGE_VERSION_SUFFIX
 
 #define MSM_VERSION_CURRENT \
 		((MSM_VERSION_MAJOR << 20) |\
@@ -823,6 +824,10 @@ static XF86ModuleVersionInfo freedrenoVersRec = {
 };
 
 _X_EXPORT XF86ModuleData freedrenoModuleData = { &freedrenoVersRec, freedrenoSetup, NULL };
+
+#ifdef XF86_MODULE_VERSION_SUFFIX
+XF86_MODULE_VERSION_SUFFIX(freedreno, MSM_VERSION_SUFFIX);
+#endif
 
 void *
 freedrenoSetup(void *module, void *ops, int *errmaj, int *errmin)
